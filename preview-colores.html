@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Previsualización de paletas</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f0f0ee; padding: 2rem 1rem; }
+    h1 { text-align: center; font-size: 1.1rem; color: #444; margin-bottom: 0.5rem; font-weight: 500; }
+    .subtitle { text-align: center; font-size: 0.85rem; color: #888; margin-bottom: 2.5rem; }
+
+    .themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+
+    /* ── Card wrapper ── */
+    .theme-card { border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+    .theme-label {
+      text-align: center; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.6rem 1rem;
+      background: #222; color: #fff;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .choose-btn {
+      display: block; width: 100%; padding: 0.65rem;
+      font-size: 0.85rem; font-weight: 600; text-align: center;
+      border: none; cursor: pointer; letter-spacing: 0.03em;
+      transition: opacity 0.15s;
+    }
+    .choose-btn:hover { opacity: 0.85; }
+
+    /* ── Mini site chrome ── */
+    .mini-nav {
+      padding: 0 1.25rem;
+      height: 44px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 3px solid transparent;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .mini-nav-links { display: flex; gap: 1rem; font-size: 0.75rem; font-weight: 400; }
+    .mini-hero { padding: 1.5rem 1.25rem 1.25rem; }
+    .mini-h1 { font-family: 'EB Garamond', serif; font-size: 1.6rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .mini-affil { font-size: 0.75rem; margin-bottom: 0.75rem; line-height: 1.6; }
+    .mini-chip { display: inline-block; font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.65rem; border-radius: 100px; border: 1px solid; }
+    .mini-section { padding: 1.25rem; }
+    .mini-h2 { font-family: 'EB Garamond', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 2px solid; }
+    .mini-pub { display: grid; grid-template-columns: 2.5rem 1fr; gap: 0 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid; }
+    .mini-pub:last-child { border-bottom: none; }
+    .mini-year { font-size: 0.7rem; font-weight: 600; text-align: right; padding-top: 0.1rem; }
+    .mini-title { font-family: 'EB Garamond', serif; font-size: 0.9rem; line-height: 1.4; margin-bottom: 0.2rem; }
+    .mini-meta { font-size: 0.72rem; }
+    .mini-doi { display: inline-block; font-size: 0.65rem; font-weight: 500; padding: 0.15rem 0.5rem; border-radius: 100px; margin-top: 0.3rem; border: 1px solid; }
+    .mini-seminar { border-radius: 8px; padding: 0.85rem; border: 1px solid; margin-bottom: 0.75rem; }
+    .mini-seminar:last-child { margin-bottom: 0; }
+    .mini-badge { display: inline-block; font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.15rem 0.5rem; border-radius: 100px; border: 1px solid; margin-bottom: 0.35rem; }
+    .mini-stitle { font-family: 'EB Garamond', serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .mini-smeta { font-size: 0.68rem; margin-bottom: 0.35rem; }
+    .mini-sbtn { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.68rem; font-weight: 500; padding: 0.2rem 0.55rem; border-radius: 5px; border: 1px solid; }
+
+    /* ════════════════════════════
+       PALETA 1 — Índigo y durazno
+    ════════════════════════════ */
+    .p1 { background: #fafaf8; }
+    .p1 .mini-nav { background: #fafaf8; border-bottom-color: #3d3580; color: #3d3580; }
+    .p1 .mini-nav-links { color: #888; }
+    .p1 .mini-hero { background: #fff; }
+    .p1 .mini-h1 { color: #3d3580; }
+    .p1 .mini-affil { color: #666; }
+    .p1 .mini-chip { background: #f0eeff; color: #3d3580; border-color: #c5bff5; }
+    .p1 .mini-section { background: #fafaf8; }
+    .p1 .mini-h2 { color: #3d3580; border-bottom-color: #f0eeff; }
+    .p1 .mini-year { color: #888; }
+    .p1 .mini-title { color: #1a1a18; }
+    .p1 .mini-meta { color: #666; }
+    .p1 .mini-pub { border-bottom-color: #e5e5e0; }
+    .p1 .mini-doi { background: #fff4ee; color: #e8622a; border-color: #f5c4a8; }
+    .p1 .mini-seminar { background: #f0eeff; border-color: #c5bff5; }
+    .p1 .mini-badge { background: #e8f5ef; color: #2d6a4f; border-color: #a8d5be; }
+    .p1 .mini-stitle { color: #1a1a18; }
+    .p1 .mini-smeta { color: #666; }
+    .p1 .mini-sbtn { background: #fff4ee; color: #e8622a; border-color: #f5c4a8; }
+    .p1 .choose-btn { background: #3d3580; color: #fff; }
+
+    /* ════════════════════════════
+       PALETA 2 — Verde jade y mostaza
+    ════════════════════════════ */
+    .p2 { background: #f7faf8; }
+    .p2 .mini-nav { background: #f7faf8; border-bottom-color: #1a5e4a; color: #1a5e4a; }
+    .p2 .mini-nav-links { color: #777; }
+    .p2 .mini-hero { background: #fff; }
+    .p2 .mini-h1 { color: #1a5e4a; }
+    .p2 .mini-affil { color: #555; }
+    .p2 .mini-chip { background: #e8f5ef; color: #1a5e4a; border-color: #a8d5be; }
+    .p2 .mini-section { background: #f7faf8; }
+    .p2 .mini-h2 { color: #1a5e4a; border-bottom-color: #e8f5ef; }
+    .p2 .mini-year { color: #888; }
+    .p2 .mini-title { color: #1a1a18; }
+    .p2 .mini-meta { color: #666; }
+    .p2 .mini-pub { border-bottom-color: #e0e8e4; }
+    .p2 .mini-doi { background: #fdf3dd; color: #b5860d; border-color: #e8d5a0; }
+    .p2 .mini-seminar { background: #e8f5ef; border-color: #a8d5be; }
+    .p2 .mini-badge { background: #e8f5ef; color: #1a5e4a; border-color: #a8d5be; }
+    .p2 .mini-stitle { color: #1a1a18; }
+    .p2 .mini-smeta { color: #555; }
+    .p2 .mini-sbtn { background: #e8f5ef; color: #1a5e4a; border-color: #a8d5be; }
+    .p2 .choose-btn { background: #1a5e4a; color: #fff; }
+
+    /* ════════════════════════════
+       PALETA 3 — Pride discreto
+    ════════════════════════════ */
+    .p3 { background: #f8f8fb; }
+    .p3 .mini-nav {
+      background: #f8f8fb; color: #2d3a8c;
+      border-bottom: 3px solid transparent;
+      border-image: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787) 1;
+    }
+    .p3 .mini-nav-links { color: #777; }
+    .p3 .mini-hero { background: #fff; }
+    .p3 .mini-h1 { color: #2d3a8c; }
+    .p3 .mini-affil { color: #555; }
+    .p3 .mini-chip { background: #eef0fa; color: #2d3a8c; border-color: #b8c0e8; }
+    .p3 .mini-section { background: #f8f8fb; }
+    .p3 .mini-h2 {
+      color: #2d3a8c; border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787) 1;
+    }
+    .p3 .section-dots { display: flex; gap: 4px; margin: -0.5rem 0 0.75rem; }
+    .p3 .dot { width: 7px; height: 7px; border-radius: 50%; }
+    .p3 .mini-year { color: #888; }
+    .p3 .mini-title { color: #1a1a18; }
+    .p3 .mini-meta { color: #555; }
+    .p3 .mini-pub { border-bottom-color: #e5e5ee; }
+    .p3 .mini-doi { background: #eef0fa; color: #2d3a8c; border-color: #b8c0e8; }
+    .p3 .mini-seminar { background: #eef0fa; border-color: #b8c0e8; }
+    .p3 .mini-badge { background: #e8f5ef; color: #1a5e4a; border-color: #a8d5be; }
+    .p3 .mini-stitle { color: #1a1a18; }
+    .p3 .mini-smeta { color: #555; }
+    .p3 .mini-sbtn { background: #eef0fa; color: #2d3a8c; border-color: #b8c0e8; }
+    .p3 .choose-btn {
+      background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787);
+      color: #fff;
+    }
+
+    /* ════════════════════════════
+       PALETA 4 — Tinta y cian
+    ════════════════════════════ */
+    .p4 { background: #f5f8fa; }
+    .p4 .mini-nav { background: #f5f8fa; border-bottom-color: #0f2044; color: #0f2044; }
+    .p4 .mini-nav-links { color: #777; }
+    .p4 .mini-hero { background: #fff; }
+    .p4 .mini-h1 { color: #0f2044; }
+    .p4 .mini-affil { color: #555; }
+    .p4 .mini-chip { background: #e8f4fb; color: #0891b2; border-color: #9dd5e8; }
+    .p4 .mini-section { background: #f5f8fa; }
+    .p4 .mini-h2 { color: #0f2044; border-bottom-color: #e8f4fb; }
+    .p4 .mini-year { color: #888; }
+    .p4 .mini-title { color: #1a1a18; }
+    .p4 .mini-meta { color: #555; }
+    .p4 .mini-pub { border-bottom-color: #dde8f0; }
+    .p4 .mini-doi { background: #ecfeff; color: #0891b2; border-color: #9dd5e8; }
+    .p4 .mini-seminar { background: #ecfeff; border-color: #9dd5e8; }
+    .p4 .mini-badge { background: #ecfeff; color: #0891b2; border-color: #9dd5e8; }
+    .p4 .mini-stitle { color: #1a1a18; }
+    .p4 .mini-smeta { color: #555; }
+    .p4 .mini-sbtn { background: #ecfeff; color: #0891b2; border-color: #9dd5e8; }
+    .p4 .choose-btn { background: #0891b2; color: #fff; }
+  </style>
+</head>
+<body>
+
+<h1>Elige tu paleta de colores</h1>
+<p class="subtitle">Previsualización real de los elementos del sitio — nav, publicaciones y seminarios.</p>
+
+<div class="themes">
+
+  <!-- ── PALETA 1: Índigo y durazno ── -->
+  <div class="theme-card">
+    <div class="theme-label">① Índigo y durazno</div>
+    <div class="p1">
+      <div class="mini-nav">
+        Joel Vargas Domínguez
+        <div class="mini-nav-links"><span>Inicio</span><span>Publicaciones</span><span>Seminarios</span></div>
+      </div>
+      <div class="mini-hero">
+        <div class="mini-h1">Joel Vargas Domínguez</div>
+        <div class="mini-affil">Investigador Posdoctoral SECIHTI — UAM Iztapalapa<br>Profesor de Asignatura — Facultad de Ciencias, UNAM</div>
+        <span class="mini-chip">ORCID 0000-0002-4092-5337</span>
+      </div>
+      <div class="mini-section">
+        <div class="mini-h2">Publicaciones</div>
+        <div class="mini-pub">
+          <div class="mini-year">2023</div>
+          <div>
+            <div class="mini-title">"The construction of the minimum wage and nutrition in Mexico"</div>
+            <div class="mini-meta"><em>Historia Crítica</em>, núm. 87: 101–125.</div>
+          </div>
+        </div>
+        <div class="mini-pub">
+          <div class="mini-year">2021</div>
+          <div>
+            <div class="mini-title">"Un viaje por México en 1945: intermediarios y misioneros de la ciencia"</div>
+            <div class="mini-meta"><em>INTERdisciplina</em> 9, núm. 24.</div>
+            <span class="mini-doi">DOI ↗</span>
+          </div>
+        </div>
+        <div class="mini-h2" style="margin-top:1rem">Seminarios</div>
+        <div class="mini-seminar">
+          <div class="mini-badge">En curso</div>
+          <div class="mini-stitle">Seminario de Historia de las Ciencias de la Alimentación</div>
+          <div class="mini-smeta">UAM Iztapalapa · 2023 – presente</div>
+          <span class="mini-sbtn">▶ YouTube</span>
+        </div>
+      </div>
+      <button class="choose-btn" onclick="elegir('indigo')">Elegir esta paleta →</button>
+    </div>
+  </div>
+
+  <!-- ── PALETA 2: Verde jade y mostaza ── -->
+  <div class="theme-card">
+    <div class="theme-label">② Verde jade y mostaza</div>
+    <div class="p2">
+      <div class="mini-nav">
+        Joel Vargas Domínguez
+        <div class="mini-nav-links"><span>Inicio</span><span>Publicaciones</span><span>Seminarios</span></div>
+      </div>
+      <div class="mini-hero">
+        <div class="mini-h1">Joel Vargas Domínguez</div>
+        <div class="mini-affil">Investigador Posdoctoral SECIHTI — UAM Iztapalapa<br>Profesor de Asignatura — Facultad de Ciencias, UNAM</div>
+        <span class="mini-chip">ORCID 0000-0002-4092-5337</span>
+      </div>
+      <div class="mini-section">
+        <div class="mini-h2">Publicaciones</div>
+        <div class="mini-pub">
+          <div class="mini-year">2023</div>
+          <div>
+            <div class="mini-title">"The construction of the minimum wage and nutrition in Mexico"</div>
+            <div class="mini-meta"><em>Historia Crítica</em>, núm. 87: 101–125.</div>
+          </div>
+        </div>
+        <div class="mini-pub">
+          <div class="mini-year">2021</div>
+          <div>
+            <div class="mini-title">"Un viaje por México en 1945: intermediarios y misioneros de la ciencia"</div>
+            <div class="mini-meta"><em>INTERdisciplina</em> 9, núm. 24.</div>
+            <span class="mini-doi">DOI ↗</span>
+          </div>
+        </div>
+        <div class="mini-h2" style="margin-top:1rem">Seminarios</div>
+        <div class="mini-seminar">
+          <div class="mini-badge">En curso</div>
+          <div class="mini-stitle">Seminario de Historia de las Ciencias de la Alimentación</div>
+          <div class="mini-smeta">UAM Iztapalapa · 2023 – presente</div>
+          <span class="mini-sbtn">▶ YouTube</span>
+        </div>
+      </div>
+      <button class="choose-btn" onclick="elegir('jade')">Elegir esta paleta →</button>
+    </div>
+  </div>
+
+  <!-- ── PALETA 3: Pride discreto ── -->
+  <div class="theme-card">
+    <div class="theme-label">③ Pride discreto 🏳️‍🌈</div>
+    <div class="p3">
+      <div class="mini-nav">
+        Joel Vargas Domínguez
+        <div class="mini-nav-links"><span>Inicio</span><span>Publicaciones</span><span>Seminarios</span></div>
+      </div>
+      <div class="mini-hero">
+        <div class="mini-h1">Joel Vargas Domínguez</div>
+        <div class="mini-affil">Investigador Posdoctoral SECIHTI — UAM Iztapalapa<br>Profesor de Asignatura — Facultad de Ciencias, UNAM</div>
+        <span class="mini-chip">ORCID 0000-0002-4092-5337</span>
+      </div>
+      <div class="mini-section">
+        <div class="mini-h2">Publicaciones</div>
+        <div class="section-dots p3">
+          <div class="dot" style="background:#e40303"></div>
+          <div class="dot" style="background:#ff8c00"></div>
+          <div class="dot" style="background:#ffed00"></div>
+          <div class="dot" style="background:#008026"></div>
+          <div class="dot" style="background:#004dff"></div>
+          <div class="dot" style="background:#750787"></div>
+        </div>
+        <div class="mini-pub">
+          <div class="mini-year">2023</div>
+          <div>
+            <div class="mini-title">"The construction of the minimum wage and nutrition in Mexico"</div>
+            <div class="mini-meta"><em>Historia Crítica</em>, núm. 87: 101–125.</div>
+          </div>
+        </div>
+        <div class="mini-pub">
+          <div class="mini-year">2021</div>
+          <div>
+            <div class="mini-title">"Un viaje por México en 1945: intermediarios y misioneros de la ciencia"</div>
+            <div class="mini-meta"><em>INTERdisciplina</em> 9, núm. 24.</div>
+            <span class="mini-doi">DOI ↗</span>
+          </div>
+        </div>
+        <div class="mini-h2" style="margin-top:1rem">Seminarios</div>
+        <div class="section-dots p3">
+          <div class="dot" style="background:#e40303"></div>
+          <div class="dot" style="background:#ff8c00"></div>
+          <div class="dot" style="background:#ffed00"></div>
+          <div class="dot" style="background:#008026"></div>
+          <div class="dot" style="background:#004dff"></div>
+          <div class="dot" style="background:#750787"></div>
+        </div>
+        <div class="mini-seminar">
+          <div class="mini-badge">En curso</div>
+          <div class="mini-stitle">Seminario de Historia de las Ciencias de la Alimentación</div>
+          <div class="mini-smeta">UAM Iztapalapa · 2023 – presente</div>
+          <span class="mini-sbtn">▶ YouTube</span>
+        </div>
+      </div>
+      <button class="choose-btn" onclick="elegir('pride')">Elegir esta paleta →</button>
+    </div>
+  </div>
+
+  <!-- ── PALETA 4: Tinta y cian ── -->
+  <div class="theme-card">
+    <div class="theme-label">④ Tinta y cian</div>
+    <div class="p4">
+      <div class="mini-nav">
+        Joel Vargas Domínguez
+        <div class="mini-nav-links"><span>Inicio</span><span>Publicaciones</span><span>Seminarios</span></div>
+      </div>
+      <div class="mini-hero">
+        <div class="mini-h1">Joel Vargas Domínguez</div>
+        <div class="mini-affil">Investigador Posdoctoral SECIHTI — UAM Iztapalapa<br>Profesor de Asignatura — Facultad de Ciencias, UNAM</div>
+        <span class="mini-chip">ORCID 0000-0002-4092-5337</span>
+      </div>
+      <div class="mini-section">
+        <div class="mini-h2">Publicaciones</div>
+        <div class="mini-pub">
+          <div class="mini-year">2023</div>
+          <div>
+            <div class="mini-title">"The construction of the minimum wage and nutrition in Mexico"</div>
+            <div class="mini-meta"><em>Historia Crítica</em>, núm. 87: 101–125.</div>
+          </div>
+        </div>
+        <div class="mini-pub">
+          <div class="mini-year">2021</div>
+          <div>
+            <div class="mini-title">"Un viaje por México en 1945: intermediarios y misioneros de la ciencia"</div>
+            <div class="mini-meta"><em>INTERdisciplina</em> 9, núm. 24.</div>
+            <span class="mini-doi">DOI ↗</span>
+          </div>
+        </div>
+        <div class="mini-h2" style="margin-top:1rem">Seminarios</div>
+        <div class="mini-seminar">
+          <div class="mini-badge">En curso</div>
+          <div class="mini-stitle">Seminario de Historia de las Ciencias de la Alimentación</div>
+          <div class="mini-smeta">UAM Iztapalapa · 2023 – presente</div>
+          <span class="mini-sbtn">▶ YouTube</span>
+        </div>
+      </div>
+      <button class="choose-btn" onclick="elegir('cian')">Elegir esta paleta →</button>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center; margin-top:2rem; font-size:0.8rem; color:#aaa;">
+  Al hacer clic en "Elegir", dile a Claude cuál número o nombre elegiste y aplica los cambios al sitio.
+</p>
+
+<script>
+function elegir(nombre) {
+  const nombres = { indigo: '① Índigo y durazno', jade: '② Verde jade y mostaza', pride: '③ Pride discreto', cian: '④ Tinta y cian' };
+  alert('Elegiste: ' + nombres[nombre] + '\n\nDile a Claude: "Aplica la paleta ' + nombres[nombre] + '"');
+}
+</script>
+</body>
+</html>
