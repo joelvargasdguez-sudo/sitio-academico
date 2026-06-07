@@ -7,6 +7,24 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .lang-toggle {
+      background: none;
+      border: 1px solid currentColor;
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: inherit;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-toggle:hover {
+      background: rgba(255,255,255,0.15);
+    }
+  </style>
 </head>
 <body>
 
@@ -15,12 +33,15 @@
     <div class="nav-inner">
       <span class="nav-name">Joel Vargas Domínguez</span>
       <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#publicaciones">Publicaciones</a></li>
-        <li><a href="#seminarios">Seminarios</a></li>
-        <li><a href="#noticias">Noticias</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#inicio"        data-i18n="nav.inicio">Inicio</a></li>
+        <li><a href="#publicaciones" data-i18n="nav.publicaciones">Publicaciones</a></li>
+        <li><a href="#seminarios"    data-i18n="nav.seminarios">Seminarios</a></li>
+        <li><a href="#noticias"      data-i18n="nav.noticias">Noticias</a></li>
+        <li><a href="#contacto"      data-i18n="nav.contacto">Contacto</a></li>
         <li><a href="https://orcid.org/0000-0002-4092-5337" target="_blank" class="btn-orcid">ORCID ↗</a></li>
+        <li>
+          <button class="lang-toggle" id="langBtn" onclick="toggleLang()" aria-label="Switch language">EN</button>
+        </li>
       </ul>
     </div>
   </nav>
@@ -33,12 +54,12 @@
       </div>
       <div class="hero-text">
         <h1>Joel Vargas Domínguez</h1>
-        <p class="afiliacion">
+        <p class="afiliacion" data-i18n-html="hero.afiliacion">
           Investigador Posdoctoral SECIHTI — UAM Iztapalapa<br>
           Profesor de Asignatura — Facultad de Ciencias, UNAM<br>
           SNII Nivel 1 — SECIHTI
         </p>
-        <p class="bio">
+        <p class="bio" data-i18n="hero.bio">
           Historiador de la ciencia especializado en la historia de la nutrición,
           el metabolismo y las políticas alimentarias en América Latina durante los
           siglos XX y XXI. Mi trabajo conecta la historia de la ciencia con la historia
@@ -46,8 +67,8 @@
         </p>
         <div class="hero-links">
           <a href="https://orcid.org/0000-0002-4092-5337" target="_blank" class="chip">ORCID 0000-0002-4092-5337</a>
-          <a href="#publicaciones" class="chip chip-outline">Ver publicaciones</a>
-          <a href="#contacto" class="chip chip-outline">Contacto</a>
+          <a href="#publicaciones" class="chip chip-outline" data-i18n="hero.verPub">Ver publicaciones</a>
+          <a href="#contacto"      class="chip chip-outline" data-i18n="hero.contacto">Contacto</a>
         </div>
       </div>
     </div>
@@ -58,25 +79,19 @@
     <!-- NOTICIAS -->
     <section id="noticias">
       <div class="section-inner">
-        <h2>Noticias</h2>
-
-        <!-- ══════════════════════════════════════════
-             PARA AGREGAR UNA NOTICIA: copia un bloque
-             <article class="news-item">...</article>
-             y pégalo al inicio de esta lista.
-        ═══════════════════════════════════════════ -->
+        <h2 data-i18n="nav.noticias">Noticias</h2>
 
         <div class="news-list">
 
           <article class="news-item">
             <div class="news-date">
-              <span class="news-month">Jun</span>
+              <span class="news-month" data-i18n="months.jun">Jun</span>
               <span class="news-year">2026</span>
             </div>
             <div class="news-body">
-              <span class="news-tag news-tag-seminario">Seminario</span>
-              <p class="news-title">Nueva sesión — Seminario de Historia de las Ciencias de la Alimentación</p>
-              <p class="news-desc">Próxima sesión del seminario permanente en UAM Iztapalapa. Consulta el canal de YouTube para el enlace de transmisión en vivo.</p>
+              <span class="news-tag news-tag-seminario" data-i18n="tags.seminario">Seminario</span>
+              <p class="news-title" data-i18n="news1.title">Nueva sesión — Seminario de Historia de las Ciencias de la Alimentación</p>
+              <p class="news-desc"  data-i18n="news1.desc">Próxima sesión del seminario permanente en UAM Iztapalapa. Consulta el canal de YouTube para el enlace de transmisión en vivo.</p>
               <div class="news-links">
                 <a href="https://youtube.com/@historiacienciasalimentacion?si=PqTMEU45mLmSrnNv" target="_blank" class="news-btn">▶ YouTube</a>
                 <a href="https://www.facebook.com/profile.php?id=61553626977734" target="_blank" class="news-btn">Facebook</a>
@@ -86,37 +101,37 @@
 
           <article class="news-item">
             <div class="news-date">
-              <span class="news-month">Mar</span>
+              <span class="news-month" data-i18n="months.mar">Mar</span>
               <span class="news-year">2026</span>
             </div>
             <div class="news-body">
-              <span class="news-tag news-tag-congreso">Congreso</span>
-              <p class="news-title">X Congreso de Historiadores de las Ciencias y las Humanidades — Xalapa</p>
-              <p class="news-desc">Miembro del Comité Organizador y del Comité Científico del congreso "Ignorancia, colonialismo y patrimonialización". Facultad de Historia UV / Centro INAH-Veracruz / HCH, A.C. Xalapa, Veracruz, 23–27 de marzo de 2026.</p>
+              <span class="news-tag news-tag-congreso" data-i18n="tags.congreso">Congreso</span>
+              <p class="news-title" data-i18n="news2.title">X Congreso de Historiadores de las Ciencias y las Humanidades — Xalapa</p>
+              <p class="news-desc"  data-i18n="news2.desc">Miembro del Comité Organizador y del Comité Científico del congreso "Ignorancia, colonialismo y patrimonialización". Facultad de Historia UV / Centro INAH-Veracruz / HCH, A.C. Xalapa, Veracruz, 23–27 de marzo de 2026.</p>
             </div>
           </article>
 
           <article class="news-item">
             <div class="news-date">
-              <span class="news-month">Sep</span>
+              <span class="news-month" data-i18n="months.sep">Sep</span>
               <span class="news-year">2025</span>
             </div>
             <div class="news-body">
-              <span class="news-tag news-tag-evento">Evento</span>
-              <p class="news-title">Coloquio Historia de las Ciencias de la Alimentación — Palacio de Medicina UNAM</p>
-              <p class="news-desc">Organizador del coloquio realizado en el Palacio de Medicina UNAM / Posgrado en Humanidades UAM Iztapalapa / HCH, A.C., del 9 al 11 de septiembre de 2025.</p>
+              <span class="news-tag news-tag-evento" data-i18n="tags.evento">Evento</span>
+              <p class="news-title" data-i18n="news3.title">Coloquio Historia de las Ciencias de la Alimentación — Palacio de Medicina UNAM</p>
+              <p class="news-desc"  data-i18n="news3.desc">Organizador del coloquio realizado en el Palacio de Medicina UNAM / Posgrado en Humanidades UAM Iztapalapa / HCH, A.C., del 9 al 11 de septiembre de 2025.</p>
             </div>
           </article>
 
           <article class="news-item">
             <div class="news-date">
-              <span class="news-month">May</span>
+              <span class="news-month" data-i18n="months.may">May</span>
               <span class="news-year">2025</span>
             </div>
             <div class="news-body">
-              <span class="news-tag news-tag-ponencia">Ponencia</span>
-              <p class="news-title">Panel "Loops sociohistóricos" — V Congreso Iberoamericano de Filosofía de la Ciencia, Santo Domingo</p>
-              <p class="news-desc">Coordinador y ponente del panel «Loops sociohistóricos: El imaginario de las infraestructuras tecnológicas» en el V Congreso Iberoamericano de Filosofía de la Ciencia y la Tecnología, Santo Domingo, R.D.</p>
+              <span class="news-tag news-tag-ponencia" data-i18n="tags.ponencia">Ponencia</span>
+              <p class="news-title" data-i18n="news4.title">Panel "Loops sociohistóricos" — V Congreso Iberoamericano de Filosofía de la Ciencia, Santo Domingo</p>
+              <p class="news-desc"  data-i18n="news4.desc">Coordinador y ponente del panel «Loops sociohistóricos: El imaginario de las infraestructuras tecnológicas» en el V Congreso Iberoamericano de Filosofía de la Ciencia y la Tecnología, Santo Domingo, R.D.</p>
             </div>
           </article>
 
@@ -127,20 +142,20 @@
     <!-- PUBLICACIONES -->
     <section id="publicaciones">
       <div class="section-inner">
-        <h2>Publicaciones</h2>
+        <h2 data-i18n="nav.publicaciones">Publicaciones</h2>
 
         <!-- LIBROS -->
         <div class="pub-group">
-          <h3>Libros</h3>
+          <h3 data-i18n="pub.libros">Libros</h3>
 
           <article class="pub-item">
             <div class="pub-year">2023</div>
             <div class="pub-body">
               <p class="pub-title">Cuerpos anormales: metabolismo y alimentación en el México posrevolucionario</p>
-              <p class="pub-meta">Ciudad de México: Universidad Autónoma Metropolitana, Unidad Cuajimalpa.</p>
+              <p class="pub-meta" data-i18n="pub.book1.meta">Ciudad de México: Universidad Autónoma Metropolitana, Unidad Cuajimalpa.</p>
               <div class="pub-tags">
-                <span class="tag tag-award">🏆 Premio Amílcar Herrera 2024 (ESOCITE)</span>
-                <span class="tag">Libro de autor</span>
+                <span class="tag tag-award" data-i18n="pub.book1.award">🏆 Premio Amílcar Herrera 2024 (ESOCITE)</span>
+                <span class="tag" data-i18n="pub.libroAutor">Libro de autor</span>
               </div>
             </div>
           </article>
@@ -149,9 +164,9 @@
             <div class="pub-year">2021</div>
             <div class="pub-body">
               <p class="pub-title">El hambre de los otros. Ciencia y políticas alimentarias en Latinoamérica, siglos XX y XXI</p>
-              <p class="pub-meta">Stefan Pohl-Valero y Joel Vargas-Domínguez, eds. Bogotá: Universidad del Rosario.</p>
+              <p class="pub-meta" data-i18n="pub.book2.meta">Stefan Pohl-Valero y Joel Vargas-Domínguez, eds. Bogotá: Universidad del Rosario.</p>
               <div class="pub-tags">
-                <span class="tag">Libro editado</span>
+                <span class="tag" data-i18n="pub.libroEditado">Libro editado</span>
                 <a href="https://doi.org/10.12804/urosario9789587847079" target="_blank" class="tag tag-doi">DOI ↗</a>
               </div>
             </div>
@@ -160,7 +175,7 @@
 
         <!-- ARTÍCULOS -->
         <div class="pub-group">
-          <h3>Artículos en revistas arbitradas</h3>
+          <h3 data-i18n="pub.articulos">Artículos en revistas arbitradas</h3>
 
           <article class="pub-item">
             <div class="pub-year">2023</div>
@@ -239,7 +254,7 @@
             <div class="pub-year">2017</div>
             <div class="pub-body">
               <p class="pub-title">"Mexican Scientists in the Making of Nutritional and Nuclear Diplomacy in the First Half of the Twentieth Century"</p>
-              <p class="pub-meta">Con Adriana Minor García. <em>HoST – Journal of History of Science and Technology</em> 11(1): 34–56.</p>
+              <p class="pub-meta" data-i18n-html="pub.art17a.meta">Con Adriana Minor García. <em>HoST – Journal of History of Science and Technology</em> 11(1): 34–56.</p>
               <div class="pub-tags">
                 <a href="https://doi.org/10.1515/host-2017-0003" target="_blank" class="tag tag-doi">DOI ↗</a>
               </div>
@@ -276,13 +291,13 @@
 
         <!-- CAPÍTULOS -->
         <div class="pub-group">
-          <h3>Capítulos en libros</h3>
+          <h3 data-i18n="pub.capitulos">Capítulos en libros</h3>
 
           <article class="pub-item">
             <div class="pub-year">2025</div>
             <div class="pub-body">
               <p class="pub-title">"Feeding Development: Rural Nutritional Projects in Mexico Between the 1940s and 1960s"</p>
-              <p class="pub-meta">En <em>Interrogating Development: The Mobilisation of Science, Technologies, and Technical Assistance in Postwar Mexico</em>, ed. Gisela Mateos y Edna Suárez-Díaz, 101–124. Singapore: Springer Nature.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch25a.meta">En <em>Interrogating Development: The Mobilisation of Science, Technologies, and Technical Assistance in Postwar Mexico</em>, ed. Gisela Mateos y Edna Suárez-Díaz, 101–124. Singapore: Springer Nature.</p>
               <div class="pub-tags">
                 <a href="https://doi.org/10.1007/978-981-96-2500-0_4" target="_blank" class="tag tag-doi">DOI ↗</a>
               </div>
@@ -293,7 +308,7 @@
             <div class="pub-year">2025</div>
             <div class="pub-body">
               <p class="pub-title">"Medir la necesidad: el costo de la vida en México en las primeras décadas del siglo XX"</p>
-              <p class="pub-meta">En <em>El orden de los números: historia y sociología de la estadística y la cuantificación</em>, ed. Ana María Medeles Hernández y Héctor Vera. IISUE, UNAM.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch25b.meta">En <em>El orden de los números: historia y sociología de la estadística y la cuantificación</em>, ed. Ana María Medeles Hernández y Héctor Vera. IISUE, UNAM.</p>
             </div>
           </article>
 
@@ -301,7 +316,7 @@
             <div class="pub-year">2023</div>
             <div class="pub-body">
               <p class="pub-title">"Comer pescado en el hospital: una estampa de la historia social de la ciencia en México a mediados del siglo XX"</p>
-              <p class="pub-meta">En <em>Historiografías e Investigación: problemas, metodologías y fuentes</em>, ed. Claudia Ceja Andrade et al. UAQ / Universidad de Valparaíso.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch23.meta">En <em>Historiografías e Investigación: problemas, metodologías y fuentes</em>, ed. Claudia Ceja Andrade et al. UAQ / Universidad de Valparaíso.</p>
             </div>
           </article>
 
@@ -309,7 +324,7 @@
             <div class="pub-year">2021</div>
             <div class="pub-body">
               <p class="pub-title">"'Mujer de salud vigorosa': intercambios sobre nutrición entre México y Argentina (1939–1943)"</p>
-              <p class="pub-meta">En <em>El hambre de los otros</em>, ed. Pohl-Valero y Vargas Domínguez, 71–102. Bogotá: Universidad del Rosario.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch21a.meta">En <em>El hambre de los otros</em>, ed. Pohl-Valero y Vargas Domínguez, 71–102. Bogotá: Universidad del Rosario.</p>
             </div>
           </article>
 
@@ -317,7 +332,7 @@
             <div class="pub-year">2021</div>
             <div class="pub-body">
               <p class="pub-title">"El hambre de los otros. Reflexiones sobre los ensamblajes del gobierno alimentario en América Latina"</p>
-              <p class="pub-meta">Con Stefan Pohl-Valero. Cap. 1 en <em>El hambre de los otros</em>, 1–33. Bogotá: Universidad del Rosario.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch21b.meta">Con Stefan Pohl-Valero. Cap. 1 en <em>El hambre de los otros</em>, 1–33. Bogotá: Universidad del Rosario.</p>
             </div>
           </article>
 
@@ -325,7 +340,7 @@
             <div class="pub-year">2020</div>
             <div class="pub-body">
               <p class="pub-title">"Ir del sur al norte: reflexiones sobre aspectos transnacionales de la nutrición en Latinoamérica durante la primera mitad del siglo XX"</p>
-              <p class="pub-meta">En <em>Historias entrelazadas</em>, coord. Sebastián Rivera Mir. Zinacantepec: El Colegio Mexiquense.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch20.meta">En <em>Historias entrelazadas</em>, coord. Sebastián Rivera Mir. Zinacantepec: El Colegio Mexiquense.</p>
             </div>
           </article>
 
@@ -333,7 +348,7 @@
             <div class="pub-year">2018</div>
             <div class="pub-body">
               <p class="pub-title">"Calibrando la alimentación: la estandarización del calorímetro en México"</p>
-              <p class="pub-meta">En <em>Piedra, papel y tijera: instrumentos en las ciencias en México</em>, ed. Laura Cházaro, Miruna Achim y Nuria Valverde, 211–244. México: UAM Cuajimalpa.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch18.meta">En <em>Piedra, papel y tijera: instrumentos en las ciencias en México</em>, ed. Laura Cházaro, Miruna Achim y Nuria Valverde, 211–244. México: UAM Cuajimalpa.</p>
             </div>
           </article>
 
@@ -341,7 +356,7 @@
             <div class="pub-year">2016</div>
             <div class="pub-body">
               <p class="pub-title">"La construcción del Instituto Nacional de Nutriología en México: Conexiones locales y globales"</p>
-              <p class="pub-meta">En <em>Aproximaciones a lo local y lo global</em>, ed. Edna María Suárez Díaz y Gisela Mateos, 155–182. Ciudad de México: Centro V. Lombardo Toledano.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch16.meta">En <em>Aproximaciones a lo local y lo global</em>, ed. Edna María Suárez Díaz y Gisela Mateos, 155–182. Ciudad de México: Centro V. Lombardo Toledano.</p>
             </div>
           </article>
 
@@ -349,7 +364,7 @@
             <div class="pub-year">2014</div>
             <div class="pub-body">
               <p class="pub-title">"Entre la nación y el mundo: la nutrición en México en la Conferencia de las Naciones Unidas sobre alimentación de 1943"</p>
-              <p class="pub-meta">En <em>Cuestión social, políticas sociales y construcción del Estado Social en América Latina</em>, ed. Mario Barbosa Cruz y Fernando Remedi, 175–192. UAM-Cuajimalpa / Centro Segreti.</p>
+              <p class="pub-meta" data-i18n-html="pub.ch14.meta">En <em>Cuestión social, políticas sociales y construcción del Estado Social en América Latina</em>, ed. Mario Barbosa Cruz y Fernando Remedi, 175–192. UAM-Cuajimalpa / Centro Segreti.</p>
             </div>
           </article>
         </div>
@@ -360,16 +375,16 @@
     <!-- SEMINARIOS -->
     <section id="seminarios">
       <div class="section-inner">
-        <h2>Seminarios</h2>
-        <p class="section-intro">Seminarios académicos que coordino o he coordinado, orientados a la historia de las ciencias, la alimentación y las humanidades.</p>
+        <h2 data-i18n="nav.seminarios">Seminarios</h2>
+        <p class="section-intro" data-i18n="seminarios.intro">Seminarios académicos que coordino o he coordinado, orientados a la historia de las ciencias, la alimentación y las humanidades.</p>
 
         <div class="seminars-grid">
 
           <article class="seminar-card seminar-active">
-            <div class="seminar-badge">En curso</div>
+            <div class="seminar-badge" data-i18n="seminarios.enCurso">En curso</div>
             <h3>Seminario de Historia de las Ciencias de la Alimentación</h3>
-            <p class="seminar-meta">UAM Iztapalapa · 2023 – presente</p>
-            <p class="seminar-desc">
+            <p class="seminar-meta">UAM Iztapalapa · 2023 – <span data-i18n="seminarios.presente">presente</span></p>
+            <p class="seminar-desc" data-i18n="seminarios.sem1.desc">
               Espacio permanente de discusión e investigación sobre la historia de las ciencias
               de la alimentación y la nutrición en México y América Latina.
               Reúne investigadores de diversas instituciones nacionales e internacionales.
@@ -387,10 +402,10 @@
           </article>
 
           <article class="seminar-card">
-            <div class="seminar-badge seminar-badge-past">Concluido</div>
+            <div class="seminar-badge seminar-badge-past" data-i18n="seminarios.concluido">Concluido</div>
             <h3>Seminario Interinstitucional "Del Subsuelo a la Mesa"</h3>
             <p class="seminar-meta">El Colegio Mexiquense · CONICET-UNLPam · INAH-Xalapa · UAM Iztapalapa · 2024–2025</p>
-            <p class="seminar-desc">
+            <p class="seminar-desc" data-i18n="seminarios.sem2.desc">
               Seminario internacional dedicado al estudio de la agroindustria y la construcción
               de los sistemas alimentarios modernos en el siglo XX. Reunió instituciones
               de México y Argentina en un esfuerzo de investigación comparada.
@@ -398,16 +413,16 @@
             <div class="seminar-links">
               <a href="https://www.cmq.edu.mx/index.php/difusion/agenda-dif/1349-seminario-2024051302" target="_blank" class="seminar-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                Programa
+                <span data-i18n="seminarios.programa">Programa</span>
               </a>
             </div>
           </article>
 
           <article class="seminar-card">
-            <div class="seminar-badge seminar-badge-past">Concluido</div>
+            <div class="seminar-badge seminar-badge-past" data-i18n="seminarios.concluido">Concluido</div>
             <h3>Seminario Itinerante de Historia e Historiografía de las Ciencias y las Tecnologías</h3>
             <p class="seminar-meta">CEH-Colmex · CEIICH-UNAM · IIF-UNAM · DIE-Cinvestav · UAM Iztapalapa · 2021–2024</p>
-            <p class="seminar-desc">
+            <p class="seminar-desc" data-i18n="seminarios.sem3.desc">
               Seminario interinstitucional de alcance nacional orientado a la discusión
               historiográfica y metodológica en historia de la ciencia y la tecnología,
               con participación de investigadores de las principales instituciones del país.
@@ -428,11 +443,11 @@
     <!-- CONTACTO -->
     <section id="contacto">
       <div class="section-inner">
-        <h2>Contacto</h2>
-        <p class="section-intro">Para solicitar artículos, capítulos u otra correspondencia académica.</p>
+        <h2 data-i18n="nav.contacto">Contacto</h2>
+        <p class="section-intro" data-i18n="contacto.intro">Para solicitar artículos, capítulos u otra correspondencia académica.</p>
         <div class="contact-box">
           <div class="contact-item">
-            <span class="contact-label">Correo</span>
+            <span class="contact-label" data-i18n="contacto.correo">Correo</span>
             <a href="mailto:joelvargas@ciencias.unam.mx" class="contact-value">joelvargas@ciencias.unam.mx</a>
           </div>
           <div class="contact-item">
@@ -440,8 +455,8 @@
             <a href="https://orcid.org/0000-0002-4092-5337" target="_blank" class="contact-value">0000-0002-4092-5337</a>
           </div>
           <div class="contact-item">
-            <span class="contact-label">Institución</span>
-            <span class="contact-value">UAM Iztapalapa / Facultad de Ciencias, UNAM</span>
+            <span class="contact-label" data-i18n="contacto.institucion">Institución</span>
+            <span class="contact-value" data-i18n="contacto.institucionVal">UAM Iztapalapa / Facultad de Ciencias, UNAM</span>
           </div>
         </div>
       </div>
@@ -455,6 +470,158 @@
       <p class="footer-sub">Investigador Posdoctoral SECIHTI — UAM Iztapalapa · <a href="https://joelvargasdguez-sudo.github.io/sitio-academico/" target="_blank" style="color:#d9c4b0">joelvargasdguez-sudo.github.io/sitio-academico</a></p>
     </div>
   </footer>
+
+<script>
+const translations = {
+  es: {
+    "nav.inicio":          "Inicio",
+    "nav.publicaciones":   "Publicaciones",
+    "nav.seminarios":      "Seminarios",
+    "nav.noticias":        "Noticias",
+    "nav.contacto":        "Contacto",
+
+    "hero.afiliacion":     "Investigador Posdoctoral SECIHTI — UAM Iztapalapa<br>Profesor de Asignatura — Facultad de Ciencias, UNAM<br>SNII Nivel 1 — SECIHTI",
+    "hero.bio":            "Historiador de la ciencia especializado en la historia de la nutrición, el metabolismo y las políticas alimentarias en América Latina durante los siglos XX y XXI. Mi trabajo conecta la historia de la ciencia con la historia social, la historia transnacional y los estudios de ciencia y tecnología.",
+    "hero.verPub":         "Ver publicaciones",
+    "hero.contacto":       "Contacto",
+
+    "months.jun": "Jun", "months.mar": "Mar", "months.sep": "Sep", "months.may": "May",
+
+    "tags.seminario": "Seminario",
+    "tags.congreso":  "Congreso",
+    "tags.evento":    "Evento",
+    "tags.ponencia":  "Ponencia",
+
+    "news1.title": "Nueva sesión — Seminario de Historia de las Ciencias de la Alimentación",
+    "news1.desc":  "Próxima sesión del seminario permanente en UAM Iztapalapa. Consulta el canal de YouTube para el enlace de transmisión en vivo.",
+    "news2.title": "X Congreso de Historiadores de las Ciencias y las Humanidades — Xalapa",
+    "news2.desc":  "Miembro del Comité Organizador y del Comité Científico del congreso \"Ignorancia, colonialismo y patrimonialización\". Facultad de Historia UV / Centro INAH-Veracruz / HCH, A.C. Xalapa, Veracruz, 23–27 de marzo de 2026.",
+    "news3.title": "Coloquio Historia de las Ciencias de la Alimentación — Palacio de Medicina UNAM",
+    "news3.desc":  "Organizador del coloquio realizado en el Palacio de Medicina UNAM / Posgrado en Humanidades UAM Iztapalapa / HCH, A.C., del 9 al 11 de septiembre de 2025.",
+    "news4.title": "Panel \"Loops sociohistóricos\" — V Congreso Iberoamericano de Filosofía de la Ciencia, Santo Domingo",
+    "news4.desc":  "Coordinador y ponente del panel «Loops sociohistóricos: El imaginario de las infraestructuras tecnológicas» en el V Congreso Iberoamericano de Filosofía de la Ciencia y la Tecnología, Santo Domingo, R.D.",
+
+    "pub.libros":      "Libros",
+    "pub.articulos":   "Artículos en revistas arbitradas",
+    "pub.capitulos":   "Capítulos en libros",
+    "pub.libroAutor":  "Libro de autor",
+    "pub.libroEditado":"Libro editado",
+    "pub.book1.meta":  "Ciudad de México: Universidad Autónoma Metropolitana, Unidad Cuajimalpa.",
+    "pub.book1.award": "🏆 Premio Amílcar Herrera 2024 (ESOCITE)",
+    "pub.book2.meta":  "Stefan Pohl-Valero y Joel Vargas-Domínguez, eds. Bogotá: Universidad del Rosario.",
+    "pub.art17a.meta": "Con Adriana Minor García. <em>HoST – Journal of History of Science and Technology</em> 11(1): 34–56.",
+    "pub.ch25a.meta":  "En <em>Interrogating Development: The Mobilisation of Science, Technologies, and Technical Assistance in Postwar Mexico</em>, ed. Gisela Mateos y Edna Suárez-Díaz, 101–124. Singapore: Springer Nature.",
+    "pub.ch25b.meta":  "En <em>El orden de los números: historia y sociología de la estadística y la cuantificación</em>, ed. Ana María Medeles Hernández y Héctor Vera. IISUE, UNAM.",
+    "pub.ch23.meta":   "En <em>Historiografías e Investigación: problemas, metodologías y fuentes</em>, ed. Claudia Ceja Andrade et al. UAQ / Universidad de Valparaíso.",
+    "pub.ch21a.meta":  "En <em>El hambre de los otros</em>, ed. Pohl-Valero y Vargas Domínguez, 71–102. Bogotá: Universidad del Rosario.",
+    "pub.ch21b.meta":  "Con Stefan Pohl-Valero. Cap. 1 en <em>El hambre de los otros</em>, 1–33. Bogotá: Universidad del Rosario.",
+    "pub.ch20.meta":   "En <em>Historias entrelazadas</em>, coord. Sebastián Rivera Mir. Zinacantepec: El Colegio Mexiquense.",
+    "pub.ch18.meta":   "En <em>Piedra, papel y tijera: instrumentos en las ciencias en México</em>, ed. Laura Cházaro, Miruna Achim y Nuria Valverde, 211–244. México: UAM Cuajimalpa.",
+    "pub.ch16.meta":   "En <em>Aproximaciones a lo local y lo global</em>, ed. Edna María Suárez Díaz y Gisela Mateos, 155–182. Ciudad de México: Centro V. Lombardo Toledano.",
+    "pub.ch14.meta":   "En <em>Cuestión social, políticas sociales y construcción del Estado Social en América Latina</em>, ed. Mario Barbosa Cruz y Fernando Remedi, 175–192. UAM-Cuajimalpa / Centro Segreti.",
+
+    "seminarios.intro":      "Seminarios académicos que coordino o he coordinado, orientados a la historia de las ciencias, la alimentación y las humanidades.",
+    "seminarios.enCurso":    "En curso",
+    "seminarios.concluido":  "Concluido",
+    "seminarios.presente":   "presente",
+    "seminarios.programa":   "Programa",
+    "seminarios.sem1.desc":  "Espacio permanente de discusión e investigación sobre la historia de las ciencias de la alimentación y la nutrición en México y América Latina. Reúne investigadores de diversas instituciones nacionales e internacionales.",
+    "seminarios.sem2.desc":  "Seminario internacional dedicado al estudio de la agroindustria y la construcción de los sistemas alimentarios modernos en el siglo XX. Reunió instituciones de México y Argentina en un esfuerzo de investigación comparada.",
+    "seminarios.sem3.desc":  "Seminario interinstitucional de alcance nacional orientado a la discusión historiográfica y metodológica en historia de la ciencia y la tecnología, con participación de investigadores de las principales instituciones del país.",
+
+    "contacto.intro":        "Para solicitar artículos, capítulos u otra correspondencia académica.",
+    "contacto.correo":       "Correo",
+    "contacto.institucion":  "Institución",
+    "contacto.institucionVal":"UAM Iztapalapa / Facultad de Ciencias, UNAM",
+  },
+
+  en: {
+    "nav.inicio":          "Home",
+    "nav.publicaciones":   "Publications",
+    "nav.seminarios":      "Seminars",
+    "nav.noticias":        "News",
+    "nav.contacto":        "Contact",
+
+    "hero.afiliacion":     "Postdoctoral Researcher SECIHTI — UAM Iztapalapa<br>Lecturer — Faculty of Sciences, UNAM<br>National Researcher Level 1 — SECIHTI",
+    "hero.bio":            "Historian of science specializing in the history of nutrition, metabolism, and food policies in Latin America during the twentieth and twenty-first centuries. My work connects the history of science with social history, transnational history, and science and technology studies.",
+    "hero.verPub":         "View publications",
+    "hero.contacto":       "Contact",
+
+    "months.jun": "Jun", "months.mar": "Mar", "months.sep": "Sep", "months.may": "May",
+
+    "tags.seminario": "Seminar",
+    "tags.congreso":  "Conference",
+    "tags.evento":    "Event",
+    "tags.ponencia":  "Paper",
+
+    "news1.title": "New session — Seminar on the History of the Food Sciences",
+    "news1.desc":  "Upcoming session of the ongoing seminar at UAM Iztapalapa. Check the YouTube channel for the live stream link.",
+    "news2.title": "X Congress of Historians of the Sciences and Humanities — Xalapa",
+    "news2.desc":  "Member of the Organizing Committee and Scientific Committee of the congress \"Ignorance, Colonialism and Patrimonialization\". Faculty of History UV / Centro INAH-Veracruz / HCH, A.C. Xalapa, Veracruz, March 23–27, 2026.",
+    "news3.title": "Colloquium on the History of the Food Sciences — Palacio de Medicina UNAM",
+    "news3.desc":  "Organizer of the colloquium held at the Palacio de Medicina UNAM / Graduate Program in Humanities UAM Iztapalapa / HCH, A.C., September 9–11, 2025.",
+    "news4.title": "Panel \"Sociohistorical Loops\" — V Ibero-American Congress of Philosophy of Science, Santo Domingo",
+    "news4.desc":  "Coordinator and presenter of the panel «Sociohistorical Loops: The Imaginary of Technological Infrastructures» at the V Ibero-American Congress of Philosophy of Science and Technology, Santo Domingo, D.R.",
+
+    "pub.libros":      "Books",
+    "pub.articulos":   "Peer-reviewed articles",
+    "pub.capitulos":   "Book chapters",
+    "pub.libroAutor":  "Authored book",
+    "pub.libroEditado":"Edited book",
+    "pub.book1.meta":  "Mexico City: Universidad Autónoma Metropolitana, Unidad Cuajimalpa.",
+    "pub.book1.award": "🏆 Amílcar Herrera Prize 2024 (ESOCITE)",
+    "pub.book2.meta":  "Stefan Pohl-Valero and Joel Vargas-Domínguez, eds. Bogotá: Universidad del Rosario.",
+    "pub.art17a.meta": "With Adriana Minor García. <em>HoST – Journal of History of Science and Technology</em> 11(1): 34–56.",
+    "pub.ch25a.meta":  "In <em>Interrogating Development: The Mobilisation of Science, Technologies, and Technical Assistance in Postwar Mexico</em>, ed. Gisela Mateos and Edna Suárez-Díaz, 101–124. Singapore: Springer Nature.",
+    "pub.ch25b.meta":  "In <em>El orden de los números: historia y sociología de la estadística y la cuantificación</em>, ed. Ana María Medeles Hernández and Héctor Vera. IISUE, UNAM.",
+    "pub.ch23.meta":   "In <em>Historiografías e Investigación: problemas, metodologías y fuentes</em>, ed. Claudia Ceja Andrade et al. UAQ / Universidad de Valparaíso.",
+    "pub.ch21a.meta":  "In <em>El hambre de los otros</em>, ed. Pohl-Valero and Vargas Domínguez, 71–102. Bogotá: Universidad del Rosario.",
+    "pub.ch21b.meta":  "With Stefan Pohl-Valero. Ch. 1 in <em>El hambre de los otros</em>, 1–33. Bogotá: Universidad del Rosario.",
+    "pub.ch20.meta":   "In <em>Historias entrelazadas</em>, coord. Sebastián Rivera Mir. Zinacantepec: El Colegio Mexiquense.",
+    "pub.ch18.meta":   "In <em>Piedra, papel y tijera: instrumentos en las ciencias en México</em>, ed. Laura Cházaro, Miruna Achim and Nuria Valverde, 211–244. Mexico: UAM Cuajimalpa.",
+    "pub.ch16.meta":   "In <em>Aproximaciones a lo local y lo global</em>, ed. Edna María Suárez Díaz and Gisela Mateos, 155–182. Mexico City: Centro V. Lombardo Toledano.",
+    "pub.ch14.meta":   "In <em>Cuestión social, políticas sociales y construcción del Estado Social en América Latina</em>, ed. Mario Barbosa Cruz and Fernando Remedi, 175–192. UAM-Cuajimalpa / Centro Segreti.",
+
+    "seminarios.intro":      "Academic seminars I coordinate or have coordinated, focused on the history of science, food, and the humanities.",
+    "seminarios.enCurso":    "Ongoing",
+    "seminarios.concluido":  "Concluded",
+    "seminarios.presente":   "present",
+    "seminarios.programa":   "Program",
+    "seminarios.sem1.desc":  "A permanent forum for discussion and research on the history of the food and nutritional sciences in Mexico and Latin America, bringing together researchers from national and international institutions.",
+    "seminarios.sem2.desc":  "International seminar dedicated to studying agro-industry and the construction of modern food systems in the twentieth century. It brought together institutions from Mexico and Argentina in a comparative research effort.",
+    "seminarios.sem3.desc":  "National interinstitutional seminar focused on historiographical and methodological discussion in the history of science and technology, with participation from researchers at leading institutions across the country.",
+
+    "contacto.intro":        "To request articles, chapters, or other academic correspondence.",
+    "contacto.correo":       "Email",
+    "contacto.institucion":  "Institution",
+    "contacto.institucionVal":"UAM Iztapalapa / Faculty of Sciences, UNAM",
+  }
+};
+
+let currentLang = 'es';
+
+function applyTranslations(lang) {
+  const t = translations[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  const btn = document.getElementById('langBtn');
+  btn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+  applyTranslations(currentLang);
+}
+</script>
 
 </body>
 </html>
