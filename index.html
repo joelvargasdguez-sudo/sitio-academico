@@ -8,6 +8,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    .news-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .news-featured .news-item {
+      border: 2px solid var(--accent, #8b4a2f);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    @media (max-width: 640px) {
+      .news-featured { grid-template-columns: 1fr; }
+    }
     .lang-toggle {
       background: none;
       border: 1px solid currentColor;
@@ -83,6 +97,28 @@
 
         <div class="news-list">
 
+          <!-- DESTACADOS: 2 columnas hasta el 5 oct 2026, luego colapsa -->
+          <div class="news-featured" id="newsFeatured">
+
+          <article class="news-item">
+            <div class="news-date">
+              <span class="news-month" data-i18n="months.oct">Oct</span>
+              <span class="news-year">2026</span>
+            </div>
+            <div class="news-body">
+              <span class="news-tag news-tag-seminario" data-i18n="tags.seminario">Seminario</span>
+              <p class="news-title" data-i18n="newsOct.title">Historia de la alimentación en el ámbito cotidiano — Sandra Aguilar Rodríguez</p>
+              <p class="news-desc" data-i18n="newsOct.desc">Sesión virtual · Lunes 5 de octubre de 2026 · 16:00 h (CDMX). Sesión de discusión con Sandra Aguilar Rodríguez (Moravian University, Pensilvania).</p>
+              <div style="margin:0.75rem 0;">
+                <img src="poster_oct2026.jpg" alt="Póster sesión octubre 2026 — Sandra Aguilar Rodríguez"
+                     style="max-width:100%;border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,0.15);" />
+              </div>
+              <div class="news-links">
+                <a href="https://cuaed-unam-mx.zoom.us/meeting/register/56NUHEKYQl6Zja-hmiL1Yg" target="_blank" class="news-btn" data-i18n="news0.btnZoom">📹 Registro Zoom</a>
+              </div>
+            </div>
+          </article>
+
           <article class="news-item">
             <div class="news-date">
               <span class="news-month" data-i18n="months.sep">Sep</span>
@@ -97,6 +133,8 @@
               </div>
             </div>
           </article>
+
+          </div><!-- /news-featured -->
 
           <article class="news-item">
             <div class="news-date">
@@ -590,7 +628,9 @@ const translations = {
     "hero.verPub":         "Ver publicaciones",
     "hero.contacto":       "Contacto",
 
-    "months.ago": "Ago", "months.jun": "Jun", "months.mar": "Mar", "months.sep": "Sep", "months.may": "May",
+    "months.oct": "Oct", "months.ago": "Ago", "months.jun": "Jun", "months.mar": "Mar", "months.sep": "Sep", "months.may": "May",
+    "newsOct.title": "Historia de la alimentación en el ámbito cotidiano — Sandra Aguilar Rodríguez",
+    "newsOct.desc":  "Sesión virtual · Lunes 5 de octubre de 2026 · 16:00 h (CDMX). Sesión de discusión con Sandra Aguilar Rodríguez (Moravian University, Pensilvania).",
 
     "tags.seminario": "Seminario",
     "tags.congreso":  "Congreso",
@@ -664,7 +704,9 @@ const translations = {
     "hero.verPub":         "View publications",
     "hero.contacto":       "Contact",
 
-    "months.ago": "Aug", "months.jun": "Jun", "months.mar": "Mar", "months.sep": "Sep", "months.may": "May",
+    "months.oct": "Oct", "months.ago": "Aug", "months.jun": "Jun", "months.mar": "Mar", "months.sep": "Sep", "months.may": "May",
+    "newsOct.title": "History of everyday food — Sandra Aguilar Rodríguez",
+    "newsOct.desc":  "Virtual session · Monday, October 5, 2026 · 4:00 PM (Mexico City). Discussion session with Sandra Aguilar Rodríguez (Moravian University, Pennsylvania).",
 
     "tags.seminario": "Seminar",
     "tags.congreso":  "Conference",
@@ -726,6 +768,20 @@ const translations = {
     "contacto.institucionVal":"UAM Iztapalapa / Faculty of Sciences, UNAM",
   }
 };
+
+// Colapsar grid destacado después de la fecha del seminario (5 oct 2026)
+(function() {
+  var cutoff = new Date('2026-10-06T00:00:00-06:00');
+  if (new Date() >= cutoff) {
+    var el = document.getElementById('newsFeatured');
+    if (el) {
+      el.style.display = 'block'; // colapsa a una columna
+      // Mover el artículo Tapuya al frente
+      var items = el.querySelectorAll('.news-item');
+      if (items.length === 2) el.insertBefore(items[1], items[0]);
+    }
+  }
+})();
 
 let currentLang = 'es';
 
