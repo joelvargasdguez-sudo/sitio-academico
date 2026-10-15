@@ -18,9 +18,16 @@
   --award:     #7a4f00;
   --award-lt:  #fdf3dd;
   --pride:     linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787);
+  --s-stripe:  linear-gradient(90deg,#F5B920,#E8472A,#3B5EC6,#2A7A5B,#F5B920);
+  --s-red:     #E8472A;
+  --s-yellow:  #F5B920;
+  --s-blue:    #3B5EC6;
+  --s-green:   #2A7A5B;
+  --s-cream:   #F5EFE6;
   --max:       860px;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-serif: 'EB Garamond', Georgia, serif;
+  --font-display: 'Bricolage Grotesque', var(--font-body);
 }
 
 html { scroll-behavior: smooth; }
@@ -45,7 +52,7 @@ nav {
   background: rgba(248, 248, 251, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787) 1;
+  border-image: var(--s-stripe) 1;
 }
 
 .nav-inner {
@@ -199,14 +206,14 @@ section:nth-child(even) { background: var(--surface); }
 }
 
 h2 {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 2.1rem;
   font-weight: 600;
   color: var(--accent);
   margin-bottom: 2.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787) 1;
+  border-image: var(--s-stripe) 1;
 }
 
 .section-intro {
@@ -243,7 +250,7 @@ h2 {
   left: 1.85rem;
   top: 0; bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787);
+  background: linear-gradient(180deg,#F5B920,#E8472A,#3B5EC6,#2A7A5B);
   border-radius: 2px;
   pointer-events: none;
 }
@@ -289,7 +296,7 @@ h2 {
   border: 1px solid;
 }
 
-.news-tag-seminario { background: #e8f5ef; color: #2d6a4f; border-color: #a8d5be; }
+.news-tag-seminario { background: #e6f0ea; color: #2A7A5B; border-color: #9fcbb8; }
 .news-tag-congreso  { background: #eef0fa; color: #2d3a8c; border-color: #b8c0e8; }
 .news-tag-evento    { background: #fdf3dd; color: #7a4f00; border-color: #e8d5a0; }
 .news-tag-ponencia  { background: #fff0f0; color: #c0392b; border-color: #f5c0bc; }
@@ -436,8 +443,17 @@ h3 {
 }
 
 .seminar-active {
-  border-color: #a8d5be;
-  background: #f7fcf9;
+  border-color: #dbc5b0;
+  background: var(--s-cream);
+  overflow: hidden;
+}
+
+.seminar-active::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--s-stripe);
+  margin: 1rem -1.5rem -1.5rem;
 }
 
 .seminar-badge {
@@ -446,13 +462,43 @@ h3 {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: var(--active-lt);
-  color: var(--active);
-  border: 1px solid #a8d5be;
+  background: #fde8e3;
+  color: var(--s-red);
+  border: 1px solid #f5b8ae;
   padding: 0.2rem 0.6rem;
   border-radius: 100px;
   width: fit-content;
   margin-bottom: 0.25rem;
+}
+
+.seminar-logo-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 1.5rem;
+  background: #ede3d6;
+  border-bottom: 1px solid #dbc5b0;
+  margin: -1.5rem -1.5rem 1rem;
+}
+
+.seminar-logo-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.seminar-logo-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--s-red);
+}
+
+.seminar-logo-title {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #1C1C1E;
 }
 
 .seminar-badge-past {
